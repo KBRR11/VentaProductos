@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Venta de Productos</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+			<form role="form">
+				<div class="form-group">
+					 
+					<label >
+						<h1>Venta</h1>
+					</label><br>
+					<label for="exampleInputPassword1">
+						vendedor:
+					</label>
+					<input type="text" class="form-control" id="vendedor" disabled="disabled" placeholder="Admin">
+					<input type="text" class="form-control" id="doc" disabled="disabled" placeholder="Doc">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="nomcliente" placeholder="Nombre:">
+					<br>
+					<input type="text" class="form-control" id="dnicliente" placeholder="Dni:">
+					<br>
+					<input type="date" class="form-control" id="fechaventa" >
+				</div>
+				<div class="form-group">
+					 
+					<label for="exampleInputFile">
+						<h2>Producto:</h2>
+					</label>
+					<select class="form-control" id="prod">
+						<option>Seleccione Producto</option>
+						</select>
+					<br>
+					<input type="text" class="form-control" id="precio" placeholder="Precio">
+					<br>
+					<input type="text" class="form-control" id="cant" placeholder="Cantidad menor o igual a : ">
+
+					
+				</div>
+				<div class="checkbox">
+					 
+				
+				</div> 
+				<button type="submit" class="btn btn-primary">
+					Submit
+				</button>
+			</form>
+		</div>
+		<div class="col-md-6">
+			<table id="tablita" class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Doc</th>
+						<th scope="col">Cliente</th>
+						<th scope="col">Dni</th>
+						<th scope="col">Producto</th>
+						<th scope="col">Precio</th>
+						<th scope="col">Cant</th>
+						<th scope="col">Total</th>
+						
+						
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+    <script type="text/javascript" src="recursos/js/jquery-3.4.0.min.js"></script>
+	<script type="text/javascript" src="recursos/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="recursos/js/bootbox.min.js"></script>
+	<script type="text/javascript" src="recursos/js/bootbox.locales.min.js"></script>
+  </body>
+</html>
