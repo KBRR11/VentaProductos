@@ -132,7 +132,7 @@ public class UsuarioDaoImp implements UsuarioDao{
 	public List<Map<String, Object>> readAll() {
 		// TODO Auto-generated method stub
 				List<Map<String, Object>> list = new ArrayList<>();
-				String sql = "select r.idrol, r.nom_rol, u.idusuario, u.nom_usuario, u.clave "
+				String sql = "select r.idrol, r.nom_rol, u.idusuario, u.nom_user, u.clave "
 						+ "from usuario as u, rol as r WHERE r.idrol = u.idusuario";
 				try {
 					cx = Conexion.getConexion();

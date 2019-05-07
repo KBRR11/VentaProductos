@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
 			
 		break;	
 		case 2:	
-			out.println(g.toJson(rd.readAll()));		 
+			out.println(g.toJson(ud.readAll()));		 
 			break;
 		/*case 3:	
 			int w = Integer.parseInt(request.getParameter("id"));
