@@ -11,73 +11,130 @@
     <meta name="author" content="LayoutIt!">
 
     <link href="recursos/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    
 
   </head>
   <body>
 
     <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<form role="form">
 				<div class="form-group">
 					 
 					<label>
 						<h1>Venta</h1>
 					</label><br>
-					<label >
-						vendedor:
-					</label>
-					<select class="form-control" id="vendedor">
-						<option>Seleccione Categoría</option>
-						</select><br>
-					<select class="form-control" id="doc">
-						<option>Seleccione Doc</option>
-						</select>
+					
 				</div>
+					
 				<div class="form-group">
 					<input type="text" class="form-control" id="nomcliente" placeholder="Nombre:">
 					<br>
 					<input type="text" class="form-control" id="dnicliente" placeholder="Dni:">
 					<br>
-					<input type="date" class="form-control" id="fechaventa" >
-				</div>
-				<div class="form-group">
-					 
-					<label for="exampleInputFile">
-						<h2>Producto:</h2>
-					</label>
-					<select class="form-control" id="prod">
-						<option>Seleccione Producto</option>
-						</select>
-					<br>
-					<input type="text" class="form-control" id="precio" placeholder="Precio">
-					<br>
-					<input type="text" class="form-control" id="cant" placeholder="Cantidad menor o igual a : ">
-
 					
 				</div>
-				<div class="checkbox">
-					 
+
+
+<div class="modal fade" id="modalventa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Venta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div>
+       <label><h3>Vendedor:</h3></label><br>
+       <select class="form-control" id="vendedor">
+						<option>Seleccione vendedor</option>
+						</select><br>
+						<label><h3>Tipo de Documento:</h3></label><br>
+       <select class="form-control" id="doc">
+						<option>Seleccione Tipo</option>
+						<option>Factura</option>
+						</select><br>
+					<label><h3>Fecha:</h3><br>
+					<input type="text" class="form-control" id="fecha">	
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="continuar" data-toggle='modal' data-target='#modalagregar'>Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalagregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Detalle Venta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+		<label><h4>Producto:</h4></label><br>
+		<input type="text" class="form-control" id="prod"><br>
+		<label><h4>Precio Venta:</h4></label><br>
+		<input type="text" class="form-control" id="prevent"><br>
+		<label><h4>Cantidad:</h4></label><br>
+		<input type="text" class="form-control" id="cantvent"><br>
+		<button id="botonadd"  class="btn btn-primary">
+					Agregar
+				</button>
+		</div>
+		<div class="col-md-8">
+			<table class="table " id="tablapro">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Categoría</th>
+							<th scope="col">Producto</th>
+							<th scope="col">Cantidad</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Acción</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 				
-				</div> 
-				<button type="submit" class="btn btn-primary">
-					Submit
+				
+				<button id="botoncli"  class="btn btn-primary">
+					Agregar
 				</button>
 			</form>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<table id="tablita" class="table">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">Doc</th>
-						<th scope="col">Cliente</th>
+					    <th scope="col">Cliente</th>
 						<th scope="col">Dni</th>
-						<th scope="col">Producto</th>
-						<th scope="col">Precio</th>
-						<th scope="col">Cant</th>
-						<th scope="col">Total</th>
+						<th scope="col" colspan="2">Acción</th>
 						
 						
 					</tr>
@@ -92,8 +149,10 @@
 
     <script type="text/javascript" src="recursos/js/jquery-3.4.0.min.js"></script>
 	<script type="text/javascript" src="recursos/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript" src="recursos/js/bootbox.min.js"></script>
 	<script type="text/javascript" src="recursos/js/bootbox.locales.min.js"></script>
-	<script type="text/javascript" src="recursos/js/venta.js"></script>
+	<script type="text/javascript" src="recursos/js/ventasall.js"></script>
+	
   </body>
 </html>

@@ -99,7 +99,7 @@ public class ClienteDaoImp implements ClienteDao {
 	@Override
 	public List<Cliente> readAll() {
 		List<Cliente> list = new ArrayList<>();
-		String sql = "select *from cliente";
+		String sql = "select *from cliente order by idcliente desc";
 		try {
 			cx = Conexion.getConexion();
 			ps = cx.prepareStatement(sql);

@@ -1,5 +1,6 @@
 package pe.edu.upeu.venta.controller;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,6 +20,8 @@ import pe.edu.upeu.ventas.daoImp.ClienteDaoImp;
 import pe.edu.upeu.ventas.daoImp.DetalleVentaDaoImp;
 import pe.edu.upeu.ventas.daoImp.UsuarioDaoImp;
 import pe.edu.upeu.ventas.daoImp.VentasDaoImp;
+import pe.edu.upeu.ventas.entity.Cliente;
+import pe.edu.upeu.ventas.entity.DetalleVenta;
 import pe.edu.upeu.ventas.entity.Producto;
 import pe.edu.upeu.ventas.entity.Ventas;
 
@@ -28,7 +31,7 @@ import pe.edu.upeu.ventas.entity.Ventas;
 @WebServlet("/vc")
 public class VentasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private VentasDao vd = new VentasDaoImp();
+	private VentasDao vtd = new VentasDaoImp();
 	private UsuarioDao ud = new UsuarioDaoImp();
 	private ClienteDao cld = new ClienteDaoImp();
 	private DetalleVentaDao dvd = new DetalleVentaDaoImp();
@@ -50,14 +53,26 @@ public class VentasController extends HttpServlet {
 		//System.out.println(request.getParameter("opc"));
 		int op = Integer.parseInt(request.getParameter("opc"));
 		int x = 0;
+		int y =0;
+		
 		switch (op) {
 		case 1:	
-			int a = Integer.parseInt(request.getParameter("id"));
-		if(a==0) {
-		x = vd.create(new Ventas(0, Integer.parseInt(request.getParameter("vendedor")), request.getParameter("nomcliente"), null, null));
-		out.println("Registro guardado correctamente..!");
-		}
-		break;
+			x = cld.create(new Cliente(0,request.getParameter("nomcliente"), request.getParameter("dnicliente")));
+			out.println("Registro guardado correctamente..!");//no me dice esto
+			
+			break;
+		case 2:
+			out.println(g.toJson(cld.readAll()));
+			
+			break;
+	    case 3:
+	    	
+	    	y= vtd.create(new Ventas(0, Integer.parseInt(request.getParameter("vendedor")),Integer.parseInt(request.getParameter("id")) , request.getParameter("doc"), request.getParameter("fecha")));
+	    	out.println(" guardado correctamente..!");
+			
+	    	break;
+		
+			
 	}
 	}
 	/**
