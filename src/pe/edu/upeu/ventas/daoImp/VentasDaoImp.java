@@ -83,21 +83,23 @@ public class VentasDaoImp implements VentasDao {
 	}
 
 	@Override
-	public Ventas read(int id) {
+	public List<Ventas> readByCliente(int id) {
 		// TODO Auto-generated method stub
-		Ventas v =new Ventas();
-		 String sql = "select * from ventas where idventas = ?";
+		List<Ventas> ventas=new ArrayList<Ventas>();
+		 String sql = "select * from ventas where idcliente = ?";
 		 try {
 			cx = Conexion.getConexion();
 			ps = cx.prepareStatement(sql);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			while(rs.next()) {
+				Ventas v =new Ventas();
 				v.setIdventas(rs.getInt("idventas"));
 				v.setIdusuario(rs.getInt("idusuario"));
 				v.setIdcliente(rs.getInt("idcliente"));
 				v.setDoc(rs.getString("doc"));
 				v.setFecha(rs.getString("fecha"));
+				ventas.add(v);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -105,7 +107,7 @@ public class VentasDaoImp implements VentasDao {
 		 finally {
 				Conexion.cerrar();
 			}
-		 return v;
+		 return ventas;
 	}
 
 	@Override

@@ -10,6 +10,6 @@ public interface VentasDao {
 	public int create(Ventas u);
 	public int update(Ventas u);
 	public int delete(int id);
-	public Ventas read(int id);
+	public List<Ventas> readByCliente(int id);
 	public List<Map<String, Object>> readAll();
 }

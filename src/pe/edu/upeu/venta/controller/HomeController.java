@@ -73,6 +73,9 @@ public class HomeController extends HttpServlet {
 					Double.parseDouble(request.getParameter("precio")),Integer.parseInt(request.getParameter("cant"))));
 			out.println("Modificado correctamente..!");
 			}
+			break;
+			
+			
 			}
 			
     }

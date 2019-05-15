@@ -71,8 +71,19 @@ public class VentasController extends HttpServlet {
 	    	out.println(" guardado correctamente..!");
 			
 	    	break;
-		
+	    case 4: 
+	    	int w = Integer.parseInt(request.getParameter("id"));
 			
+	    	out.println(g.toJson(vtd.readByCliente(w)));//estoy trabajando en esto
+	    	break;
+	    	
+	    case 5: 
+	    	int d = Integer.parseInt(request.getParameter("id"));
+	    	d= dvd.create(new DetalleVenta(0,Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("id")),Double.parseDouble(request.getParameter("prevent")),Integer.parseInt(request.getParameter("cantvent"))));
+	    	out.println("Venta Exitosa..!");
+	    	//out.println(g.toJson(dvd.));
+	    	break;
+	    
 	}
 	}
 	/**

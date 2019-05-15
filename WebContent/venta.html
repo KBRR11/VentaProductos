@@ -39,7 +39,7 @@
 
 
 <div class="modal fade" id="modalventa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Agregar Venta</h5>
@@ -48,7 +48,7 @@
         </button>
       </div>
       <div class="modal-body">
-       <div>
+       <div class="col-md-4">
        <label><h3>Vendedor:</h3></label><br>
        <select class="form-control" id="vendedor">
 						<option>Seleccione vendedor</option>
@@ -57,14 +57,31 @@
        <select class="form-control" id="doc">
 						<option>Seleccione Tipo</option>
 						<option>Factura</option>
+						<option>Boleta</option>
 						</select><br>
 					<label><h3>Fecha:</h3><br>
 					<input type="text" class="form-control" id="fecha">	
        </div>
+       <div  class="col-md-8">
+       <table class="table " id="tablavent">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">Documento</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Acción</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+       </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" id="continuar" data-toggle='modal' data-target='#modalagregar'>Continuar</button>
+        <button type="button" class="btn btn-primary" id="continuar" >Continuar</button>
       </div>
     </div>
   </div>
@@ -85,7 +102,8 @@
 	<div class="row">
 		<div class="col-md-4">
 		<label><h4>Producto:</h4></label><br>
-		<input type="text" class="form-control" id="prod"><br>
+		<input type="text" class="form-control" id="prod">
+		<input type="text" id="idprod" name="idprod" style="display:none"><br>
 		<label><h4>Precio Venta:</h4></label><br>
 		<input type="text" class="form-control" id="prevent"><br>
 		<label><h4>Cantidad:</h4></label><br>
@@ -102,7 +120,23 @@
 							<th scope="col">Categoría</th>
 							<th scope="col">Producto</th>
 							<th scope="col">Cantidad</th>
-							<th scope="col">Precio</th>
+							<th scope="col">Precio Venta</th>
+							<th scope="col">Acción</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+		</div>
+		<div class="col-md-12">
+		<table class="table " id="tabladv">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Venta</th>
+							<th scope="col">Producto</th>
+							<th scope="col">Cantidad</th>
+							<th scope="col">Precio Total</th>
 							<th scope="col">Acción</th>
 						</tr>
 					</thead>
@@ -149,7 +183,7 @@
 
     <script type="text/javascript" src="recursos/js/jquery-3.4.0.min.js"></script>
 	<script type="text/javascript" src="recursos/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="recursos/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="recursos/js/bootbox.min.js"></script>
 	<script type="text/javascript" src="recursos/js/bootbox.locales.min.js"></script>
 	<script type="text/javascript" src="recursos/js/ventasall.js"></script>
