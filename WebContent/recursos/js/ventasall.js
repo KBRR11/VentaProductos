@@ -69,7 +69,7 @@ function agregar(id) {
 									+ "</td>"
 									+ "<td><a href='#' style='color:#73C6B6' onclick='cambiar("
 									+ d[i].idventas
-									+ ")' onclick= 'listarDventa("+d[i].idventas+")' data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
+									+ ")'  data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
 			c++;
 		}
 	});
@@ -130,36 +130,8 @@ function listarCliente() {
 					});
 
 };
-function listarDventa(id){
-	var i, c = 1;
-	 
-	$.get("vc", {
-		opc : "6",
-		id : id
-	}, function(data) {
-		
-		var d = JSON.parse(data);
-		$('#tabladv tbody').empty();
-		for (i = 0; i < d.length; i++) {
-			$("#tabladv tbody")
-					.append(
-							"<tr><td>"
-									+ c
-									+ "</td><td>"
-									+ d[i].idventa
-									+ "</td><td>"
-									+ d[i].idproducto
-									+ "</td><td>"
-									+ d[i].precio_venta
-									+ "</td><td>"
-									+ d[i].cantidad_venta
-									+ "</td>"
-									+ "<td><a href='#' style='color:#73C6B6' onclick='cambiar("
-									+ d[i].iddetalle_venta
-									+ ")' data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
-			c++;
-		}
-	});
+function listarDventa(){
+	
 	}
 
 
@@ -216,7 +188,35 @@ function listarProductos() {
 }
 function cambiar(id){
 	$("#idvent").val(id);
-	
+	var i, c = 1;
+	 
+	$.get("vc", {
+		opc : "6",
+		id : id
+	}, function(data) {
+		
+		var d = JSON.parse(data);
+		$('#tabladv tbody').empty();
+		for (i = 0; i < d.length; i++) {
+			$("#tabladv tbody")
+					.append(
+							"<tr><td>"
+									+ c
+									+ "</td><td>"
+									+ d[i].idventas
+									+ "</td><td>"
+									+ d[i].idproducto
+									+ "</td><td>"
+									+ d[i].cantidad_venta
+									+ "</td><td>"
+									+ d[i].precio_venta
+									+ "</td>"
+									+ "<td><a href='#' style='color:#73C6B6' onclick='cambiar("
+									+ d[i].iddetalle_venta
+									+ ")' data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
+			c++;
+		}
+	});
 	
 }
 function operacion(){
