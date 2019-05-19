@@ -103,11 +103,12 @@
 		<div class="col-md-4">
 		<label><h4>Producto:</h4></label><br>
 		<input type="text" class="form-control" id="prod">
-		<input type="text" id="idprod" name="idprod" style="display:none"><br>
+		<input type="text" id="idvent" name="idvent" style="display:none"><br>
 		<label><h4>Precio Venta:</h4></label><br>
-		<input type="text" class="form-control" id="prevent"><br>
+		<input type="text" class="form-control" id="prevent">
+		<input type="text" id="precioto" name="precioto"  style="display:none" ><br>
 		<label><h4>Cantidad:</h4></label><br>
-		<input type="text" class="form-control" id="cantvent"><br>
+		<input type="text" class="form-control" id="cantvent" onkeyup="operacion()"><br>
 		<button id="botonadd"  class="btn btn-primary">
 					Agregar
 				</button>
@@ -162,6 +163,7 @@
 			</form>
 		</div>
 		<div class="col-md-8">
+			
 			<table id="tablita" class="table">
 				<thead>
 					<tr>
@@ -177,6 +179,7 @@
 					
 				</tbody>
 			</table>
+			
 		</div>
 	</div>
 </div>

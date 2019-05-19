@@ -7,6 +7,7 @@ $(document).ready(function() {
 	listarCliente();
 	listarUsuario();
 	listarProductos();
+	listarDventa();
 
 	$("#botoncli").click(function() {
 
@@ -66,9 +67,9 @@ function agregar(id) {
 									+ "</td><td>"
 									+ d[i].fecha
 									+ "</td>"
-									+ "<td><a href='#' style='color:#73C6B6' onclick='agregarVenta("
+									+ "<td><a href='#' style='color:#73C6B6' onclick='cambiar("
 									+ d[i].idventas
-									+ ")' data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
+									+ ")' onclick= 'listarDventa("+d[i].idventas+")' data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
 			c++;
 		}
 	});
@@ -129,6 +130,38 @@ function listarCliente() {
 					});
 
 };
+function listarDventa(id){
+	var i, c = 1;
+	 
+	$.get("vc", {
+		opc : "6",
+		id : id
+	}, function(data) {
+		
+		var d = JSON.parse(data);
+		$('#tabladv tbody').empty();
+		for (i = 0; i < d.length; i++) {
+			$("#tabladv tbody")
+					.append(
+							"<tr><td>"
+									+ c
+									+ "</td><td>"
+									+ d[i].idventa
+									+ "</td><td>"
+									+ d[i].idproducto
+									+ "</td><td>"
+									+ d[i].precio_venta
+									+ "</td><td>"
+									+ d[i].cantidad_venta
+									+ "</td>"
+									+ "<td><a href='#' style='color:#73C6B6' onclick='cambiar("
+									+ d[i].iddetalle_venta
+									+ ")' data-toggle='modal' data-target='#modalagregar'><i class='fas fa-shopping-bag'></i></a></td>")
+			c++;
+		}
+	});
+	}
+
 
 function listarUsuario() {
 	var i, c = 1;
@@ -181,6 +214,18 @@ function listarProductos() {
 						}
 					});
 }
+function cambiar(id){
+	$("#idvent").val(id);
+	
+	
+}
+function operacion(){
+	let prevent =  $("#prevent").val();
+	let cantvent = $("#cantvent").val();
+	
+	$("#precioto").val(prevent*cantvent);
+	
+}
 
 function agregarVenta(id) {
 	$.post("hc", {
@@ -189,17 +234,23 @@ function agregarVenta(id) {
 	}, function(data) {
 		var x = JSON.parse(data);
 		var product = $("#prod").val(x.nom_producto);
-		var prevent = $("#prevent").val(x.precio*1.17);
+		var idvent = $("#idvent").val();
+		 $("#prevent").val(x.precio*1.17);
+		 var prevent =  $("#prevent").val();
 		 $( "#cantvent" ).attr('placeholder',"menor o igual a: " + x.cantidad);
-		 var cantvent =$("#cantvent").val();
-		var idprod = $("#idprod").val(x.idproducto);
+		 var cantvent = $("#cantvent").val();
+		 var precioto = $("#precioto").val();
 
 		$("#botonadd").click(function() {
 			var x = JSON.parse(data);
 			alert(id);
-			alert(x.idproducto);
+			alert(idvent);
+			var prevent = $("#prevent").val();
 			 var cantvent =$("#cantvent").val();
-			if( cantvent > x.cantidad){
+			 var precioto =$("#precioto").val();
+			 alert(cantvent);
+			 console.log(precioto);
+	if( cantvent > x.cantidad){
 				
 			$("#cantvent").popover({
 				trigger: 'focus',
@@ -209,13 +260,13 @@ function agregarVenta(id) {
 			});
 			$("#cantvent").popover('show');
 		
-		}else{
+	}else{
 			
 				
 				$.post("vc", {
+					idvent : idvent,
 					id : id,
-					id : idprod,
-					prevent : prevent,
+					precioto : precioto,
 					cantvent : cantvent,
 					opc : 5
 				}).done(function(data) {

@@ -28,7 +28,7 @@ function validar(user,pass){
 		});
 		$("#user").popover('show');
 	}else {
-		window.location='index.html';
+		window.location='VistaPrincipal.html';
 	}
 	
 	});

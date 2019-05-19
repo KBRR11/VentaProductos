@@ -54,7 +54,7 @@ public class VentasController extends HttpServlet {
 		int op = Integer.parseInt(request.getParameter("opc"));
 		int x = 0;
 		int y =0;
-		
+		int d=0;
 		switch (op) {
 		case 1:	
 			x = cld.create(new Cliente(0,request.getParameter("nomcliente"), request.getParameter("dnicliente")));
@@ -78,12 +78,15 @@ public class VentasController extends HttpServlet {
 	    	break;
 	    	
 	    case 5: 
-	    	int d = Integer.parseInt(request.getParameter("id"));
-	    	d= dvd.create(new DetalleVenta(0,Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("id")),Double.parseDouble(request.getParameter("prevent")),Integer.parseInt(request.getParameter("cantvent"))));
+	    	d= dvd.create(new DetalleVenta(0,Integer.parseInt(request.getParameter("idvent")),Integer.parseInt(request.getParameter("id")),Double.parseDouble(request.getParameter("precioto")),Integer.parseInt(request.getParameter("cantvent"))));
 	    	out.println("Venta Exitosa..!");
 	    	//out.println(g.toJson(dvd.));
 	    	break;
-	    
+	    case 6:
+            int s = Integer.parseInt(request.getParameter("id"));
+			
+	    	out.println(g.toJson(dvd.readByVenta(s)));
+	    	break;
 	}
 	}
 	/**

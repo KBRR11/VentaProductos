@@ -21,7 +21,7 @@ public class DetalleVentaDaoImp implements DetalleVentaDao{
 	@Override
 	public int create(DetalleVenta u) {
 		int x = 0;
-		String sql ="INSERT INTO detalle_venta (iddetalle_venta, idventas, idproducto, precio_venta, cantida_venta) VALUES (NULL, ?, ?, ?, ?)";
+		String sql ="INSERT INTO detalle_venta (iddetalle_venta, idventas, idproducto, precio_venta, cantidad_venta) VALUES (NULL, ?, ?, ?, ?)";
 		try {
 			cx = Conexion.getConexion();
 			ps = cx.prepareStatement(sql);
@@ -78,32 +78,34 @@ public class DetalleVentaDaoImp implements DetalleVentaDao{
 		}
 		return x;
 	}
-
-	@Override
-	public DetalleVenta read(int id) {
+	public List<DetalleVenta> readByVenta(int id) {
 		// TODO Auto-generated method stub
-				DetalleVenta v =new DetalleVenta();
-				 String sql = "select * from detalle_venta where iddetalle_venta = ?";
-				 try {
-					cx = Conexion.getConexion();
-					ps = cx.prepareStatement(sql);
-					ps.setInt(1, id);
-					rs = ps.executeQuery();
-					while(rs.next()) {
-						v.setIddetalle_venta(rs.getInt("iddetalle_venta"));
-						v.setIdventas(rs.getInt("idventas"));
-						v.setIdproducto(rs.getInt("idproducto"));
-						v.setPrecio_venta(rs.getInt("precio_venta"));
-						v.setCantidad_venta(rs.getInt("cantidad_venta"));
-					}
-				} catch (Exception e) {
-					System.out.println(e);
-				}
-				 finally {
-						Conexion.cerrar();
-					}
-				 return v;
+		List<DetalleVenta> dventas=new ArrayList<DetalleVenta>();
+		 String sql = "select * from detalle_venta where idventas = ?";
+		 try {
+			cx = Conexion.getConexion();
+			ps = cx.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				DetalleVenta dv =new DetalleVenta();
+				dv.setIdventas(rs.getInt("idventas"));
+				dv.setIdproducto(rs.getInt("idproducto"));
+				dv.setPrecio_venta(rs.getDouble("precio_venta"));
+				dv.setCantidad_venta(rs.getInt("cantidad_venta"));
+				
+				dventas.add(dv);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		 finally {
+				Conexion.cerrar();
+			}
+		 return dventas;
 	}
+
+
 
 	@Override
 	public List<Map<String, Object>> readAll() {
