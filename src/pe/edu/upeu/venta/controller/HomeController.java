@@ -75,6 +75,10 @@ public class HomeController extends HttpServlet {
 			}
 			break;
 			
+		case 6: 
+			int b = Integer.parseInt(request.getParameter("id"));
+			b = pd.updateCantidad(new Producto(b,Integer.parseInt(request.getParameter("cant"))));
+			out.println("Venta Exitosa..!");
 			
 			}
 			

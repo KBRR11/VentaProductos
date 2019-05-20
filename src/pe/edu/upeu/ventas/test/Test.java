@@ -34,9 +34,9 @@ public class Test {
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//modificar();
+		modificar();
 		//listar();
-		guardarDVenta();
+		//guardarDVenta();
 		//read();
 		//delete();
 	}
@@ -56,7 +56,7 @@ public class Test {
 	}
 	static void modificar() {
 		
-		int x = dao.update(new Producto(12,2,"leche de mipalo",14,1));
+		int x = dao.updateCantidad(new Producto(1,20));
 		System.out.println(x);
 	}
 	

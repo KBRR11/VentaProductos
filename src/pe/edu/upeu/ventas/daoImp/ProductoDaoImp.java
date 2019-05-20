@@ -66,6 +66,22 @@ public class ProductoDaoImp implements ProductoDao {
 		}
 		return x;
 	}
+	public int updateCantidad(Producto u) {
+		int x = 0;
+		String sql = "UPDATE producto Set  cantidad=? WHERE idproducto=?";
+		try {
+			cx = Conexion.getConexion();
+			ps = cx.prepareStatement(sql);
+			ps.setInt(1, u.getCantidad());
+			ps.setInt(2, u.getIdproducto());
+			x = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			Conexion.cerrar();
+		}
+		return x;
+	}
 
 	@Override
 	public int delete(int id) {

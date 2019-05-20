@@ -1,14 +1,20 @@
 package pe.edu.upeu.ventas.entity;
 
-public class Producto  {
+public class Producto {
 	private int idproducto;
 	private int idcategoria;
 	private String nom_producto;
 	private double precio;
-    private int cantidad;
-    
-    public Producto() {
-		
+	private int cantidad;
+
+	public Producto() {
+
+	}
+
+	public Producto(int idproducto, int cantidad) {
+		super();
+		this.idproducto = idproducto;
+		this.cantidad = cantidad;
 	}
 
 	public Producto(int idproducto, int idcategoria, String nom_producto, double precio, int cantidad) {
@@ -59,5 +65,5 @@ public class Producto  {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-    
+
 }

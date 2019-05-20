@@ -7,7 +7,7 @@ $(document).ready(function() {
 	listarCliente();
 	listarUsuario();
 	listarProductos();
-	listarDventa();
+	limpiarProducto() ;
 
 	$("#botoncli").click(function() {
 
@@ -31,6 +31,13 @@ function limpiarCliente() {
 	$("#dnicliente").val("");
 	$("#nomcliente").focus();
 }
+function limpiarProducto() {
+	$("#prod").val("");
+	$("#prevent").val("");
+	$("#cantvent").val("");
+	$("#prod").focus("");
+}
+
 function eliminarCliente(id){
 	bootbox.confirm("Desea Eliminar este Cliente?", function(result) {                    /*Hay que Terminarlo Fk?*/
 	    if(result){
@@ -130,9 +137,9 @@ function listarCliente() {
 					});
 
 };
-function listarDventa(){
+/*function listarDventa(){
 	
-	}
+	}*/
 
 
 function listarUsuario() {
@@ -218,12 +225,17 @@ function cambiar(id){
 		}
 	});
 	
+	
 }
+
 function operacion(){
 	let prevent =  $("#prevent").val();
 	let cantvent = $("#cantvent").val();
 	
 	$("#precioto").val(prevent*cantvent);
+	let cantold = $("#cantold").val();
+	
+	$("#cantnew").val(cantold-cantvent);
 	
 }
 
@@ -234,22 +246,22 @@ function agregarVenta(id) {
 	}, function(data) {
 		var x = JSON.parse(data);
 		var product = $("#prod").val(x.nom_producto);
+		$("#cantold").val(x.cantidad);
 		var idvent = $("#idvent").val();
 		 $("#prevent").val(x.precio*1.17);
 		 var prevent =  $("#prevent").val();
 		 $( "#cantvent" ).attr('placeholder',"menor o igual a: " + x.cantidad);
 		 var cantvent = $("#cantvent").val();
 		 var precioto = $("#precioto").val();
-
+		 
 		$("#botonadd").click(function() {
 			var x = JSON.parse(data);
-			alert(id);
-			alert(idvent);
+			
+			
 			var prevent = $("#prevent").val();
 			 var cantvent =$("#cantvent").val();
 			 var precioto =$("#precioto").val();
-			 alert(cantvent);
-			 console.log(precioto);
+			 
 	if( cantvent > x.cantidad){
 				
 			$("#cantvent").popover({
@@ -268,10 +280,18 @@ function agregarVenta(id) {
 					id : id,
 					precioto : precioto,
 					cantvent : cantvent,
-					opc : 5
+					opc : "5"
 				}).done(function(data) {
 					bootbox.alert(data);
 
+				});
+				var cant = $("#cantnew").val();
+				$.post("hc",  {
+					id:id ,
+					cant:cant,
+					opc : "6"
+				}).done(function(data){
+					bootbox.alert(data);
 				});
 
 			
